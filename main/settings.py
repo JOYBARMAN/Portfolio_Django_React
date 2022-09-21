@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+
+    # Local Apps 
+    'portfolio_backend',
 ]
 
 MIDDLEWARE = [

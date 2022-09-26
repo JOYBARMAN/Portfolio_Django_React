@@ -12,7 +12,7 @@ route.register('skill',SkillViewSet,basename="skill")
 route.register('testimonial',TestimonialViewSet,basename="testimonial")
 route.register('workexperience',WorkExperienceViewSet,basename="workexperience")
 route.register('work',WorkViewSet,basename="work")
-
+route.register('tag',TagViewSet,basename="tag")
 
 urlpatterns = [
     path("",include(route.urls)),

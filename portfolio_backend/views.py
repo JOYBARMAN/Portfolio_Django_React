@@ -33,3 +33,7 @@ class WorkExperienceViewSet (viewsets.ModelViewSet):
 class WorkViewSet (viewsets.ModelViewSet):
     queryset=Work.objects.all().order_by("-id")
     serializer_class=WorkSerializers
+
+class TagViewSet (viewsets.ModelViewSet):
+    queryset=Tag.objects.all().order_by("-id")
+    serializer_class=TagSerializers

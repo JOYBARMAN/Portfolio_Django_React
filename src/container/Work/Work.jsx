@@ -10,18 +10,10 @@ import { domain } from '../../env';
 
 const Work = () => {
   const [works, setWorks] = useState([]);
+  const [tag, setTag] = useState([])
   const [filterWork, setFilterWork] = useState([]);
   const [activeFilter, setActiveFilter] = useState('All');
   const [animateCard, setAnimateCard] = useState({ y: 0, opacity: 1 });
-
-  // useEffect(() => {
-  //   const query = '*[_type == "works"]';
-
-  //   client.fetch(query).then((data) => {
-  //     setWorks(data);
-  //     setFilterWork(data);
-  //   });
-  // }, []);
 
   const getWork = () => {
     axios.get(`${domain}/work/`)
@@ -33,8 +25,18 @@ const Work = () => {
       .catch(error => console.error(`Error : ${error}`))
   }
 
+  const getTag = () => {
+    axios.get(`${domain}/tag/`)
+      .then((response) => {
+        const data = response.data
+        setTag(data);
+      })
+      .catch(error => console.error(`Error : ${error}`))
+  }
+
   useEffect(() => {
     getWork()
+    getTag()
   }, [])
 
   const handleWorkFilter = (item) => {
@@ -47,7 +49,7 @@ const Work = () => {
       if (item === 'All') {
         setFilterWork(works);
       } else {
-        setFilterWork(works.filter((work) => work.tag_name.includes(item)));
+        setFilterWork(works.filter((work) => work.tag_name['name'].includes(item)));
       }
     }, 500);
   };
@@ -57,13 +59,13 @@ const Work = () => {
       <h2 className="head-text">My Creative <span>Portfolio</span> Section</h2>
 
       <div className="app__work-filter">
-        {['UI/UX', 'Web App', 'Mobile App', 'React JS', 'All'].map((item, index) => (
+        {tag.map((item, index) => (
           <div
             key={index}
-            onClick={() => handleWorkFilter(item)}
-            className={`app__work-filter-item app__flex p-text ${activeFilter === item ? 'item-active' : ''}`}
+            onClick={() => handleWorkFilter(item.name)}
+            className={`app__work-filter-item app__flex p-text ${activeFilter === item.name ? 'item-active' : ''}`}
           >
-            {item}
+            {item.name}
           </div>
         ))}
       </div>
@@ -114,7 +116,7 @@ const Work = () => {
               <p className="p-text" style={{ marginTop: 10 }}>{work.description}</p>
 
               <div className="app__work-tag app__flex">
-                <p className="p-text">{work.tag_name}</p>
+                <p className="p-text">{work.tag_name.name}</p>
               </div>
             </div>
           </div>

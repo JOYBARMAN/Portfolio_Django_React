@@ -39,4 +39,10 @@ class WorkExperienceSerializers(serializers.ModelSerializer):
 class WorkSerializers(serializers.ModelSerializer):
     class Meta:
         model = Work
+        depth=1
+        fields = "__all__"
+
+class TagSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
         fields = "__all__"

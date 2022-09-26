@@ -63,11 +63,19 @@ class WorkExperience (models.Model):
     def __str__(self):
         return self.name
 
+class Tag (models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
 class Work (models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     projectLink = models.CharField(max_length=255)
     codeLink = models.CharField(max_length=255)
+    image = models.ImageField(upload_to="protfolio/work/")
+    tag_name = models.OneToOneField(Tag,on_delete=models.CASCADE)
     
     def __str__(self):
         return self.title

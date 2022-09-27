@@ -19,6 +19,7 @@ class ContactSerializers(serializers.ModelSerializer):
 class ExperienceSerializers(serializers.ModelSerializer):
     class Meta:
         model = Experience
+        depth=1
         fields = "__all__"
 
 class SkillSerializers(serializers.ModelSerializer):

@@ -28,13 +28,6 @@ class Contact (models.Model):
         return self.name
 
 
-class Experience (models.Model):
-    year = models.CharField(max_length=100)
-    work = models.TextField()
-
-    def __str__(self):
-        return self.year
-
 
 class Skill (models.Model):
     name = models.CharField(max_length=255)
@@ -62,6 +55,13 @@ class WorkExperience (models.Model):
     
     def __str__(self):
         return self.name
+
+class Experience (models.Model):
+    year = models.CharField(max_length=100)
+    works = models.ManyToManyField(WorkExperience)
+
+    def __str__(self):
+        return self.year
 
 class Tag (models.Model):
     name = models.CharField(max_length=100)

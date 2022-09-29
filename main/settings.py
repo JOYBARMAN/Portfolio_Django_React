@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-5ow2i7a$8=vdpz-pxmcjs&v-!3r8-9^&&3x=ou2t5g-8%=4(zw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -139,11 +139,15 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/','static')]
 STATIC_ROOT = os.path.join(BASE_DIR,'build/', 'staticroot/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+ALLOWED_HOSTS=['*']
+CORS_ORIGIN_ALLOW_ALL = True
 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
-)
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-]
+# CORS_ORIGIN_WHITELIST = (
+#     'http://localhost:3000',
+#     'http://127.0.0.1:3000'
+# )
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:3000',
+#     'http://127.0.0.1:3000'
+# ]
 CORS_URLS_REGEX = r'^/api.*'
